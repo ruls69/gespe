@@ -1,7 +1,7 @@
 # Informe de Laboratorio: Servicios de Red (DNS y Web)
 
 **Materia:** SIS313 - Infraestructura, Plataformas Tecnológicas y Redes\
-**Estudiante:** Adalid Gutiérrez Torricos\
+**Estudiante:** Adalid Gutiérrez Torricos-Huayta Fuertes Dylan
 **Docente:** Ing. Marcelo Quispe Ortega
 
 ------------------------------------------------------------------------
