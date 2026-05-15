@@ -442,5 +442,15 @@ Se verificó:
 - Recuperación automática
 - Persistencia de datos
 - Observabilidad
+- Alta Disponibilidad y Resiliencia: El uso de Nginx como balanceador demostró que se puede mantener la continuidad del servicio incluso si una instancia falla. La arquitectura garantiza que el usuario nunca perciba una interrupción mientras exista al menos un nodo activo.
 
-La práctica fortaleció conocimientos de infraestructura moderna y operación distribuida.
+- Gestión Profesional con PM2: Se comprobó que PM2 es una herramienta esencial para la estabilidad, permitiendo que las aplicaciones Node.js se recuperen automáticamente y se mantengan en ejecución constante como servicios del sistema.
+
+- Seguridad mediante Segregación: Al separar la Base de Datos (MariaDB) en una VM independiente y aplicar técnicas de Hardening, se logró proteger la capa de datos, permitiendo conexiones únicamente desde fuentes autorizadas y reduciendo riesgos de seguridad.
+
+- Monitoreo Integral: La combinación de Prometheus y Grafana permitió observar el rendimiento en tiempo real. Esto es clave para el diagnóstico de fallas y la toma de decisiones basada en datos técnicos del hardware y software de toda la red.
+
+- Infraestructura y Redes: La configuración de subredes, VLANs y enrutamiento NAT permitió simular un entorno de centro de datos real, validando la importancia de una correcta gestión de direccionamiento IP para la escalabilidad del sistema.
+
+- Reflexión técnica: La clave del éxito en este laboratorio no fue solo que el código funcionara, sino lograr 
+
