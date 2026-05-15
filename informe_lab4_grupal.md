@@ -9,7 +9,11 @@
 **Grupo:** Nº 8  
 **VLAN:** 108  
 **Subred:** 192.168.108.0/29  
-**Universitario:** [Tu Nombre]  
+**Universitarios:** 
+Huayta Fuertes Dylan CICO-TIS
+Arancibia Leon Diego Esteban SIS
+Cruz Romero Lilian Ariel SIS
+Chambi Lopez Naydelin
 **Gestión:** 1/2026  
 
 ---
