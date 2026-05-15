@@ -1,4 +1,4 @@
-# INFORME DE LABORATORIO 4.1  
+<img width="1914" height="749" alt="Imagen 13" src="https://github.com/user-attachments/assets/3d21c3dc-9a5d-4165-b419-3f2b2ea4b18d" /># INFORME DE LABORATORIO 4.1  
 ## Plataforma HA, Balanceo de Carga y Monitoreo  
 ### Práctica Grupal - Centro de Datos
 
@@ -27,8 +27,8 @@ Se inició el laboratorio verificando la correcta asignación de roles entre los
 
 ## CAPTURA 1
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** Captura de la topología general o diagrama de arquitectura  
-**Debe mostrar:** Proxy, App1, App2 y DB  
+<img width="654" height="387" alt="image" src="https://github.com/user-attachments/assets/8ea041fd-d2df-4c8b-9446-c681da183bf4" />
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -79,7 +79,7 @@ Este paso permitió que la máquina Proxy se integre correctamente a la VLAN asi
 
 ## CAPTURA 2
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** Salida del comando `ip addr` de Proxy  
+<img width="1128" height="385" alt="image" src="https://github.com/user-attachments/assets/03876a18-c1b9-4898-9d99-b017ebae3729" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -98,12 +98,14 @@ ping 192.168.108.2
 
 ## CAPTURA 3
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** `ip addr` de App1  
+<img width="880" height="131" alt="image" src="https://github.com/user-attachments/assets/85f1710d-7d17-4add-8957-135a4a199c69" />
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ## CAPTURA 4
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** `ip addr` de App2  
+<img width="672" height="467" alt="image" src="https://github.com/user-attachments/assets/cec8bc7e-d2b6-456a-bd09-0025e67a4f5b" />
+ 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -124,7 +126,8 @@ ping 192.168.108.2
 
 ## CAPTURA 5
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** `ip addr` de DB  
+<img width="1233" height="432" alt="image" src="https://github.com/user-attachments/assets/27db04de-76f4-4198-af18-f4f4388e2ee8" />
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -179,12 +182,14 @@ Nginx distribuye solicitudes entre ambas aplicaciones.
 
 ## CAPTURA 6
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** Archivo de configuración Nginx  
+<img width="619" height="319" alt="Imagen2" src="https://github.com/user-attachments/assets/4f8d5020-d96d-4f67-a438-00fda365a181" />
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ## CAPTURA 7
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** Resultado de `sudo nginx -t`  
+<img width="736" height="81" alt="image" src="https://github.com/user-attachments/assets/c7f2b4af-d717-441a-ac72-da83b6b4bb97" />
+  
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -203,7 +208,8 @@ npm -v
 
 ## CAPTURA 8
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** Verificación de versiones Node/NPM  
+<img width="360" height="41" alt="image" src="https://github.com/user-attachments/assets/6e7e258a-7d61-4478-9cd8-f2a6df071229" />
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -234,7 +240,8 @@ DB_NAME=db_movies
 
 ## CAPTURA 9
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** Contenido de `.env`  
+<img width="219" height="173" alt="image" src="https://github.com/user-attachments/assets/f6010b14-19a6-4ca7-a3af-033954d08f01" />
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -255,7 +262,7 @@ PM2 permite mantener las aplicaciones activas.
 
 ## CAPTURA 10
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** Resultado de `pm2 status`  
+<img width="728" height="111" alt="image" src="https://github.com/user-attachments/assets/e13e59ef-01f7-42ba-b47f-84bc2d3c18d1" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -289,12 +296,13 @@ Inserción de datos.
 
 ## CAPTURA 11
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** Creación de BD  
+<img width="961" height="768" alt="image" src="https://github.com/user-attachments/assets/15c4645c-d734-4766-8a22-561cb759c7cc" />
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ## CAPTURA 12
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** Tabla movies con registros  
+<img width="1002" height="197" alt="image" src="https://github.com/user-attachments/assets/a46b2561-0f06-4d88-a1bc-e3176e4990f6" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -317,7 +325,7 @@ curl http://localhost:9100/metrics
 
 ## CAPTURA 13
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** métricas Node Exporter  
+<img width="883" height="251" alt="image" src="https://github.com/user-attachments/assets/7db2a632-ab80-455c-ae16-642fe25f7066" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -338,7 +346,7 @@ scrape_configs:
 
 ## CAPTURA 14
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** archivo prometheus.yml  
+<img width="736" height="820" alt="Imagen 10" src="https://github.com/user-attachments/assets/a15c8aa9-631d-4236-91a0-1b326cf78930" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -351,12 +359,12 @@ Se importaron dashboards.
 
 ## CAPTURA 15
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** Dashboard general  
+<img width="1540" height="540" alt="Imagen 11" src="https://github.com/user-attachments/assets/8661bf9e-3fe1-4539-a899-219fabda5233" /> 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ## CAPTURA 16
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** métricas CPU/RAM  
+<img width="1914" height="749" alt="Imagen 13" src="https://github.com/user-attachments/assets/fcc82262-0297-4f5f-8761-604426a8a9ea" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -373,7 +381,8 @@ Se realizaron múltiples solicitudes.
 
 ## CAPTURA 17
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** Respuesta alternada App1/App2  
+<img width="724" height="109" alt="image" src="https://github.com/user-attachments/assets/18d266e4-d87f-4b3d-8795-612631dee9c2" />
+<img width="692" height="212" alt="image" src="https://github.com/user-attachments/assets/6490c03a-dd41-467e-aeb4-cb4aab7cea05" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -392,12 +401,12 @@ Se repitieron pruebas.
 
 ## CAPTURA 18
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** App2 detenida  
+<img width="663" height="271" alt="image" src="https://github.com/user-attachments/assets/d02df313-5850-42cf-80b7-d55d35d04884" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ## CAPTURA 19
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-**Insertar aquí:** Respuesta funcionando desde App1  
+<img width="1315" height="778" alt="image" src="https://github.com/user-attachments/assets/b66d3162-b6e1-4608-be0a-702fad2935f8" /> 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
