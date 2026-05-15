@@ -1,4 +1,4 @@
-<img width="1914" height="749" alt="Imagen 13" src="https://github.com/user-attachments/assets/3d21c3dc-9a5d-4165-b419-3f2b2ea4b18d" /># INFORME DE LABORATORIO 4.1  
+# INFORME DE LABORATORIO 4.1  
 ## Plataforma HA, Balanceo de Carga y Monitoreo  
 ### Práctica Grupal - Centro de Datos
 
@@ -410,6 +410,27 @@ Se repitieron pruebas.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
+
+Se detuvo App1.
+
+```bash
+pm2 stop app1
+```
+
+Se repitieron pruebas.
+
+---
+
+## CAPTURA 20
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+<img width="728" height="154" alt="image" src="https://github.com/user-attachments/assets/75a6e544-254a-49dc-9589-79157746b2e5" />
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## CAPTURA 21
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+<img width="1600" height="322" alt="image" src="https://github.com/user-attachments/assets/3985c495-10ee-49df-8bfe-dd5225562651" />
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 
 # 9. Conclusiones
 
