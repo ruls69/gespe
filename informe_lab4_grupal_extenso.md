@@ -11,7 +11,7 @@
 **Universitarios:**
 Huayta Fuertes Dylan CICO-TIS
 
-Arancibia Leon Diego Esteban SIS
+Arancibia Leon Diego Esteban TIS
 
 Cruz Romero Lilian Ariel SIS
 
