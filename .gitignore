@@ -1,0 +1,22 @@
+boat-rental-app/
+bus-ticket-system/
+cine-admin/
+cine-boleteria/
+cine-candybar/
+cine-database/
+cine-web/
+src/
+target/
+pom.xml
+
+# Node
+node_modules/
+dist/
+.env
+
+# Python
+__pycache__/
+*.pyc
+venv/
+env/
+.venv/
