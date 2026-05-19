@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+.glass-panel {
+  @apply bg-slate-800/60 backdrop-blur-md border border-white/10 rounded-2xl shadow-xl;
+}
