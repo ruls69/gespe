@@ -482,7 +482,7 @@ sudo mysql_secure_installation
 ## CAPTURA 16
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí el estado del servicio MariaDB.  
+<img width="735" height="214" alt="image" src="https://github.com/user-attachments/assets/2aab349d-c439-477d-a0e4-e4c7952d0a16" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -490,7 +490,7 @@ Insertar aquí el estado del servicio MariaDB.
 ## CAPTURA 17
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí `mysql_secure_installation`.  
+<img width="974" height="840" alt="06_base_de_datos" src="https://github.com/user-attachments/assets/da53bc4d-8af2-4816-ba04-3f54552b857c" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -520,7 +520,7 @@ sudo systemctl restart mariadb
 ## CAPTURA 18
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí la configuración bind-address.  
+<img width="965" height="861" alt="07_cambio_bind" src="https://github.com/user-attachments/assets/3ce7dc44-f003-49a4-9ac3-c69312407177" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -546,7 +546,7 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:4096 \
 ## CAPTURA 19
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí la generación del certificado TLS.  
+<img width="975" height="839" alt="01_certificado_TLS" src="https://github.com/user-attachments/assets/9d70eefa-50fc-40c2-881f-cd5d91f7ed73" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -592,7 +592,7 @@ sudo systemctl restart nginx
 ## CAPTURA 20
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí la configuración HTTPS/TLS.  
+<img width="692" height="566" alt="image" src="https://github.com/user-attachments/assets/296abf8f-0721-47d3-9db5-6fbbc134c546" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -600,7 +600,7 @@ Insertar aquí la configuración HTTPS/TLS.
 ## CAPTURA 21
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí el resultado de `nginx -t` con HTTPS.  
+<img width="544" height="56" alt="Captura de pantalla 2026-05-22 095457" src="https://github.com/user-attachments/assets/1e17005b-e037-4a54-800b-9362a2db871d" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -618,7 +618,7 @@ curl -k https://10.204.145.210
 ## CAPTURA 22
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí la prueba HTTPS exitosa.  
+<img width="503" height="61" alt="010_verificacion" src="https://github.com/user-attachments/assets/4dce7046-4ae7-4143-bd68-ea01121b1653" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -640,7 +640,7 @@ Cabeceras verificadas:
 ## CAPTURA 23
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí las cabeceras HTTP de seguridad.  
+<img width="624" height="299" alt="02_cabeceras_de_seguridad" src="https://github.com/user-attachments/assets/eedbee3c-bd26-4fb2-8d62-83ef3ba5f65d" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -667,7 +667,7 @@ Resultado esperado:
 ## CAPTURA 24
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí TLS 1.2 exitoso.  
+<img width="963" height="641" alt="image" src="https://github.com/user-attachments/assets/a9c30fc6-9599-4d22-8bd2-f4501c7b65c0" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -675,7 +675,7 @@ Insertar aquí TLS 1.2 exitoso.
 ## CAPTURA 25
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí el rechazo de TLS 1.1.  
+<img width="936" height="444" alt="Captura de pantalla 2026-05-21 121122" src="https://github.com/user-attachments/assets/741fa8fe-cf7b-45ba-9281-a5e85bf23f5a" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -693,7 +693,7 @@ nc -vz 10.204.145.211 3306
 ## CAPTURA 26
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí la prueba del puerto 3306.  
+<img width="669" height="294" alt="Captura de pantalla 2026-05-20 212154" src="https://github.com/user-attachments/assets/5013e84a-9533-4d6b-8282-2a9db1ddfe24" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
