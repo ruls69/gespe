@@ -1,79 +1,117 @@
-Markdown
 # INFORME DE LABORATORIO 5.1  
 # Hardening Integral y Seguridad TLS  
 ## Práctica Grupal - Red entre Pares
 
 **Universidad:** Universidad Mayor, Real y Pontificia de San Francisco Xavier de Chuquisaca  
+**Facultad:** Facultad de Ciencias y Tecnología  
+**Carrera:** Ingeniería en Ciencias de la Computación  
 **Asignatura:** SIS313 - Infraestructura, Plataformas Tecnológicas y Redes  
 **Docente:** Ing. Marcelo Quispe Ortega  
+**Laboratorio:** 5.1 - Hardening Integral y Seguridad TLS  
+**Modalidad:** Práctica Grupal  
 **Integrantes:** [Nombre Integrante 1] - [Nombre Integrante 2]  
-**Virtualización:** VirtualBox sobre Windows  
-**Sistemas Operativos Utilizados:** - Ubuntu Server 26.06 (Servidor Web)  
+**Virtualización:** Oracle VirtualBox sobre Windows  
+
+## Sistemas Operativos Utilizados
+
+- Ubuntu Server 26.04 (Servidor Web)
 - Ubuntu Server 24.04 LTS (Servidor DB)
 
 ---
 
 # 1. Objetivo
 
-Implementar hardening integral sobre servidores Linux virtualizados, aplicando mecanismos de protección SSH, firewall UFW, cifrado TLS y endurecimiento de servicios dentro de un entorno de red par a par seguro.
+El objetivo del presente laboratorio fue implementar medidas de hardening y seguridad sobre servidores Linux desplegados en máquinas virtuales, aplicando mecanismos de autenticación segura, endurecimiento de servicios, firewall, cifrado TLS y segmentación de acceso entre servidores.
+
+La práctica fue desarrollada utilizando dos computadoras físicas distintas, ejecutando máquinas virtuales sobre VirtualBox en Windows, permitiendo una comunicación real mediante red en modo Bridge.
 
 ---
 
-# 2. Entorno del Laboratorio
+# 2. Entorno Utilizado
 
-El laboratorio fue realizado utilizando dos computadoras físicas diferentes ejecutando VirtualBox sobre Windows. 
+## 2.1 Infraestructura Física
 
-Debido a restricciones de seguridad perimetral en la infraestructura física de la red local (**Aislamiento de AP / AP Isolation**), las direcciones MAC virtuales eran bloqueadas e impedían la visibilidad entre hosts. Como medida de contingencia, se desplegó un punto de acceso inalámbrico móvil (**Hotspot**), aislando el entorno de pruebas en un segmento de red libre de bloqueos corporativos.
+El laboratorio se desarrolló utilizando:
 
-Cada integrante desplegó una máquina virtual con un rol específico en el puente inalámbrico:
+- Dos computadoras físicas diferentes
+- Oracle VirtualBox como hipervisor
+- Windows como sistema anfitrión
+- Red Bridge Adapter para conectividad real
+- Ubuntu Server como sistema operativo invitado
 
-| VM | Rol | Sistema | IP Estática |
+---
+
+## 2.2 Máquinas Virtuales Utilizadas
+
+| Máquina Virtual | Rol | Sistema Operativo | Dirección IP |
 |---|---|---|---|
-| VM Web | Nginx + TLS + Hardening | Ubuntu Server 26.06 | `10.204.145.210` |
-| VM DB | MariaDB + Firewall | Ubuntu Server 24.04 LTS | `10.204.145.211` |
+| VM Web | Servidor Web Seguro | Ubuntu Server 26.04 | 10.204.145.210 |
+| VM DB | Servidor Base de Datos | Ubuntu Server 24.04 LTS | 10.204.145.211 |
+
+### Gateway utilizado
+
+```text
+10.204.145.186
+```
 
 ---
 
 ## CAPTURA 1
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí VirtualBox mostrando ambas VMs  
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí la ventana principal de VirtualBox mostrando ambas VMs ejecutándose.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
 
-# 3. Configuración de Red Bridge
+# 3. Configuración de Red
 
-Se configuró el adaptador de red en modo Bridge apuntando a la tarjeta de red inalámbrica activa conectada al Hotspot.
+## 3.1 Configuración del Adaptador Bridge
 
-Pasos realizados:
+En ambas máquinas virtuales se configuró el adaptador de red en modo Bridge Adapter para permitir comunicación directa dentro de la red física.
+
+### Pasos realizados
+
 1. Abrir VirtualBox.
-2. Seleccionar la VM correspondiente.
-3. Configuración → Red.
-4. Adaptador 1 → Seleccionar **Adaptador Puente (Bridge Adapter)**.
-5. Avanzadas → Cambiar Modo Promiscuo a **Permitir todo (Allow All)**.
+2. Seleccionar la máquina virtual.
+3. Ingresar a **Configuración → Red**.
+4. Habilitar Adaptador 1.
+5. Seleccionar **Adaptador Puente (Bridge Adapter)**.
+6. Elegir la interfaz física de red del host Windows.
+
+### Explicación
+
+El modo Bridge permitió que las máquinas virtuales se integraran directamente a la red local del laboratorio, obteniendo conectividad real con otros dispositivos y entre ambas computadoras físicas.
 
 ---
 
 ## CAPTURA 2
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí configuración Bridge Adapter  
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí la configuración del Adaptador Bridge en VirtualBox.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
 
 # 4. Configuración IP Estática
 
-Archivo editado en el Servidor Web:
+## 4.1 Configuración de la VM Web (Ubuntu Server 26.04)
+
+Archivo editado:
+
 ```bash
 sudo nano /etc/netplan/50-cloud-init.yaml
-Configuración aplicada (VM Web):
+```
 
-YAML
+Configuración aplicada:
+
+```yaml
 network:
   version: 2
+  renderer: networkd
   ethernets:
     enp0s3:
-      dhcp4: no
+      dhcp4: false
       addresses:
         - 10.204.145.210/24
       routes:
@@ -83,14 +121,61 @@ network:
         addresses:
           - 8.8.8.8
           - 1.1.1.1
-Configuración aplicada (VM DB):
+```
 
-YAML
+Aplicación de cambios:
+
+```bash
+sudo netplan generate
+sudo netplan apply
+```
+
+Verificación:
+
+```bash
+ip addr
+ping 8.8.8.8
+```
+
+### Explicación
+
+Se configuró una IP estática para garantizar que el servidor web mantenga una dirección fija durante toda la práctica.
+
+---
+
+## CAPTURA 3
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí el archivo Netplan de la VM Web.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+## CAPTURA 4
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí el resultado de `ip addr` en la VM Web.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+## 4.2 Configuración de la VM DB (Ubuntu Server 24.04 LTS)
+
+Archivo editado:
+
+```bash
+sudo nano /etc/netplan/50-cloud-init.yaml
+```
+
+Configuración aplicada:
+
+```yaml
 network:
   version: 2
+  renderer: networkd
   ethernets:
     enp0s3:
-      dhcp4: no
+      dhcp4: false
       addresses:
         - 10.204.145.211/24
       routes:
@@ -99,259 +184,564 @@ network:
       nameservers:
         addresses:
           - 8.8.8.8
-Aplicación y verificación de cambios:
+```
 
-Bash
+Aplicación:
+
+```bash
+sudo netplan generate
 sudo netplan apply
+```
+
+Verificación:
+
+```bash
 ip addr
-CAPTURA 3
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ping 10.204.145.210
+```
 
-Insertar aquí netplan VM Web
+---
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## CAPTURA 5
 
-CAPTURA 4
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí el archivo Netplan de la VM DB.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Insertar aquí ip addr VM Web
+---
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## CAPTURA 6
 
-CAPTURA 5
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí el resultado de `ip addr` en la VM DB.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Insertar aquí netplan VM DB
+---
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 5. Hardening SSH
 
-5. Hardening SSH
-Para la versión de Ubuntu Server de la VM Web, se mitigó el vector de ataque por fuerza bruta reestructurando OpenSSH para deshabilitar su arquitectura por sockets y forzar el uso del servicio tradicional.
+## 5.1 Generación de Claves SSH
 
-Comandos de control del servicio:
+```bash
+ssh-keygen -t ed25519 -a 100 -C "lab5-hardening"
+```
 
-Bash
-sudo systemctl disable --now ssh.socket
-sudo systemctl enable --now ssh.service
-Generación de claves criptográficas seguras (Ed25519) desde el cliente:
+### Explicación
 
-Bash
-ssh-keygen -t ed25519 -C "ruls@seguro-grupo.local"
-ssh-copy-id -p 2222 ruls@10.204.145.210
-Modificación del archivo de configuración del demonio (sudo nano /etc/ssh/sshd_config):
+Las claves ED25519 ofrecen mejor seguridad y rendimiento comparadas con RSA tradicional.
 
-Fragmento de código
+---
+
+## CAPTURA 7
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí el resultado del comando `ssh-keygen`.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+## 5.2 Configuración Segura SSH
+
+Archivo:
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+Configuración aplicada:
+
+```conf
 Port 2222
 PermitRootLogin no
 PasswordAuthentication no
 PubkeyAuthentication yes
 MaxAuthTries 3
-Reinicio y aplicación:
+X11Forwarding no
+```
 
-Bash
+Reinicio:
+
+```bash
 sudo systemctl restart ssh
-CAPTURA 6
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+sudo systemctl status ssh
+```
 
-Insertar aquí ssh-keygen
+### Explicación
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Se deshabilitó el acceso root remoto y autenticación por contraseña para reducir riesgos de ataques de fuerza bruta.
 
-CAPTURA 7
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+---
 
-Insertar aquí sshd_config
+## CAPTURA 8
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí el archivo `sshd_config`.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-6. Configuración UFW
-Se instaló el cortafuegos perimetral interno aplicando políticas estrictas de denegación por defecto para tráfico entrante y permitiendo únicamente los servicios auditados.
+---
 
-Bash
+## CAPTURA 9
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí el estado del servicio SSH.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+# 6. Configuración Firewall UFW
+
+## 6.1 Instalación
+
+```bash
+sudo apt update
 sudo apt install ufw -y
+```
+
+---
+
+## 6.2 Configuración del Servidor Web
+
+```bash
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
-Servidor Web:
 
-Bash
-sudo ufw allow 2222/tcp comment 'SSH Endurecido'
-sudo ufw allow 80/tcp comment 'Redirección HTTP'
-sudo ufw allow 443/tcp comment 'HTTPS Cifrado'
+sudo ufw allow 2222/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+```
+
+Activación:
+
+```bash
 sudo ufw enable
-Servidor DB:
+sudo ufw status verbose
+```
 
-Bash
-sudo ufw allow from 10.204.145.210 to any port 3306 comment 'Tráfico MariaDB exclusivo desde Web'
-sudo ufw allow 2222/tcp comment 'SSH de Administración'
-sudo ufw enable
-CAPTURA 8
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+---
 
-Insertar aquí reglas UFW Web (sudo ufw status)
+## CAPTURA 10
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí las reglas UFW del servidor Web.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-CAPTURA 9
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+---
 
-Insertar aquí reglas UFW DB
+## 6.3 Configuración del Servidor DB
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```bash
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+```
 
-7. Instalación y Hardening de Nginx
-Bash
+Permitir únicamente MariaDB desde la VM Web:
+
+```bash
+sudo ufw allow from 10.204.145.210 to any port 3306 proto tcp
+```
+
+Permitir SSH:
+
+```bash
+sudo ufw allow 2222/tcp
+```
+
+---
+
+## CAPTURA 11
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí las reglas UFW del servidor DB.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+# 7. Hardening del Kernel
+
+Archivo:
+
+```bash
+sudo nano /etc/sysctl.conf
+```
+
+Parámetros agregados:
+
+```conf
+net.ipv4.conf.all.rp_filter=1
+kernel.sysrq=0
+fs.suid_dumpable=0
+net.ipv4.icmp_echo_ignore_broadcasts=1
+```
+
+Aplicación:
+
+```bash
+sudo sysctl -p
+```
+
+---
+
+## CAPTURA 12
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí la configuración de sysctl.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+# 8. Instalación de Nginx
+
+```bash
 sudo apt update
 sudo apt install nginx -y
-Creación del directorio raíz del sitio seguro y asignación de permisos al propietario del proceso web (www-data):
+```
 
-Bash
-sudo mkdir -p /var/www/seguro-grupo.local
-echo "<h1>Infraestructura Web Segura</h1><p>Administrador: ruls</p>" | sudo tee /var/www/seguro-grupo.local/index.html
-sudo chown -R www-data:www-data /var/www/seguro-grupo.local
-sudo chmod -R 755 /var/www/seguro-grupo.local
-CAPTURA 10
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Habilitación:
 
-Insertar aquí página HTML creada e indexada
+```bash
+sudo systemctl enable nginx
+sudo systemctl start nginx
+sudo systemctl status nginx
+```
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+---
 
-8. Instalación MariaDB
-Bash
-sudo apt install mariadb-server -y
-Aseguramiento del motor de base de datos eliminando accesos anónimos, tablas de prueba y deshabilitando el login remoto del usuario root:
+## CAPTURA 13
 
-Bash
-sudo mysql_secure_installation
-CAPTURA 11
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí el estado del servicio Nginx.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Insertar aquí mysql_secure_installation
+---
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 9. Creación del Sitio Web
 
-9. Generación SSL/TLS
-Creación del repositorio de llaves y generación de un certificado digital X.509 robusto autofirmado parametrizado para la institución con una validez de 365 días:
+```bash
+sudo mkdir -p /var/www/lab51.local
+```
 
-Bash
-sudo mkdir -p /etc/nginx/ssl
-Bash
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-  -keyout /etc/nginx/ssl/nginx-selfsigned.key \
-  -out /etc/nginx/ssl/nginx-selfsigned.crt \
-  -subj "/C=BO/ST=Chuquisaca/L=Sucre/O=USFX/OU=SIS313/CN=seguro-grupo.local"
-CAPTURA 12
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Archivo HTML:
 
-Insertar aquí certificado generado
+```bash
+sudo nano /var/www/lab51.local/index.html
+```
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Contenido:
 
-10. Configuración HTTPS
-Edición del archivo del bloque de servidor (sudo nano /etc/nginx/sites-available/seguro-grupo.local):
+```html
+<h1>Servidor Seguro - Laboratorio 5.1</h1>
+<p>HTTPS y Hardening Activo</p>
+```
 
-Nginx
+---
+
+## CAPTURA 14
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí el archivo HTML creado.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+# 10. Configuración del Virtual Host
+
+Archivo:
+
+```bash
+sudo nano /etc/nginx/sites-available/lab51.local
+```
+
+Configuración:
+
+```nginx
 server {
     listen 80;
-    server_name seguro-grupo.local 10.204.145.210;
-    return 301 [https://seguro-grupo.local](https://seguro-grupo.local)$request_uri;
-}
+    server_name lab51.local;
 
+    root /var/www/lab51.local;
+    index index.html;
+}
+```
+
+Activación:
+
+```bash
+sudo ln -s /etc/nginx/sites-available/lab51.local /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl restart nginx
+```
+
+---
+
+## CAPTURA 15
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí el Virtual Host configurado.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+## CAPTURA 16
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí el resultado de `sudo nginx -t`.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+# 11. Instalación y Hardening MariaDB
+
+Instalación:
+
+```bash
+sudo apt update
+sudo apt install mariadb-server -y
+```
+
+Verificación:
+
+```bash
+sudo systemctl status mariadb
+```
+
+Hardening:
+
+```bash
+sudo mysql_secure_installation
+```
+
+---
+
+## CAPTURA 17
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí el estado del servicio MariaDB.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+## CAPTURA 18
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí `mysql_secure_installation`.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+## 11.1 Configuración bind-address
+
+Archivo:
+
+```bash
+sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+```
+
+Configuración:
+
+```ini
+bind-address = 10.204.145.211
+```
+
+Reinicio:
+
+```bash
+sudo systemctl restart mariadb
+```
+
+---
+
+## CAPTURA 19
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí la configuración bind-address.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+# 12. Configuración SSL/TLS
+
+Creación del directorio:
+
+```bash
+sudo mkdir -p /etc/nginx/ssl
+```
+
+Generación del certificado:
+
+```bash
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:4096 \
+-keyout /etc/nginx/ssl/nginx-selfsigned.key \
+-out /etc/nginx/ssl/nginx-selfsigned.crt
+```
+
+---
+
+## CAPTURA 20
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí la generación del certificado TLS.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+# 13. Configuración HTTPS
+
+Archivo:
+
+```bash
+sudo nano /etc/nginx/sites-available/lab51.local
+```
+
+Configuración aplicada:
+
+```nginx
 server {
     listen 443 ssl;
-    server_name seguro-grupo.local 10.204.145.210;
+    server_name lab51.local;
 
     ssl_certificate /etc/nginx/ssl/nginx-selfsigned.crt;
     ssl_certificate_key /etc/nginx/ssl/nginx-selfsigned.key;
 
-    # Hardening TLS y mitigación de fugas de información
     ssl_protocols TLSv1.2 TLSv1.3;
-    server_tokens off;
 
-    # Inyección de cabeceras de seguridad
-    add_header Strict-Transport-Security "max-age=63072000; includeSubDomains" always;
-    add_header X-Frame-Options SAMEORIGIN;
-    add_header X-Content-Type-Options nosniff;
-    add_header X-XSS-Protection "1; mode=block";
+    add_header Strict-Transport-Security "max-age=63072000";
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-Content-Type-Options "nosniff";
 
-    root /var/www/seguro-grupo.local;
+    root /var/www/lab51.local;
     index index.html;
-
-    location / {
-        try_files $uri $uri/ =404;
-    }
 }
-Activación mediante enlace simbólico y descarte del sitio por defecto:
+```
 
-Bash
-sudo ln -s /etc/nginx/sites-available/seguro-grupo.local /etc/nginx/sites-enabled/
-sudo rm /etc/nginx/sites-enabled/default
+Validación:
+
+```bash
 sudo nginx -t
 sudo systemctl restart nginx
-CAPTURA 13
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
 
-Insertar aquí configuración TLS
+---
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## CAPTURA 21
 
-11. Pruebas y Auditoría de Seguridad
-A. Redirección Insegura a Segura (HTTP -> HTTPS)
-Bash
-curl -I [http://10.204.145.210](http://10.204.145.210)
-Resultado esperado: Retorno de código de estado HTTP/1.1 301 Moved Permanently apuntando a la dirección cifrada.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí la configuración HTTPS/TLS.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-B. Consumo del Recurso Local
-Bash
-curl -k [https://10.204.145.210](https://10.204.145.210)
-C. Auditoría de Cabeceras Inyectadas
-Bash
-curl -k -I [https://10.204.145.210](https://10.204.145.210)
-Resultado verificado: Exposición correcta de las directivas contra ataques cross-site (HSTS, X-Frame-Options, X-XSS-Protection).
+---
 
-D. Negociación Criptográfica y Validación de Protocolos
-Conexión exitosa bajo estándar moderno:
+## CAPTURA 22
 
-Bash
-openssl s_client -connect 10.204.145.210:443 -tls1_2 </dev/null
-Rechazo e interrupción de conexión ante protocolo obsoleto (Demostración de Hardening TLS):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí el resultado de `nginx -t` con HTTPS.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Bash
-openssl s_client -connect 10.204.145.210:443 -tls1_1 </dev/null
-Resultado verificado: error:0A0000BF:SSL routines:tls_setup_handshake:no protocols available, comprobando que Nginx rechaza degradaciones de cifrado.
+---
 
-CAPTURA 14
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 14. Pruebas de Seguridad
 
-Insertar aquí curl con código 301 o contenido HTML
+## 14.1 Verificación HTTPS
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```bash
+curl -k https://10.204.145.210
+```
 
-CAPTURA 15
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+---
 
-Insertar aquí cabeceras HTTP expuestas con código 200 OK
+## CAPTURA 23
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí la prueba HTTPS exitosa.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-CAPTURA 16
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+---
 
-Insertar aquí error de handshake TLS 1.1 bloqueado
+## 14.2 Verificación de Cabeceras
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```bash
+curl -k -I https://10.204.145.210
+```
 
-12. Conclusiones
-El laboratorio permitió implementar mecanismos de defensa en profundidad utilizando Linux, UFW, SSH Hardened y TLS en arquitecturas modernas de Ubuntu Server.
+Cabeceras verificadas:
 
-Se verificó el correcto funcionamiento de:
+- Strict-Transport-Security
+- X-Frame-Options
+- X-Content-Type-Options
 
-Redirección automática hacia canales cifrados HTTPS.
+---
 
-Bloqueo y protección ante escaneos masivos en puertos de administración mediante llaves Ed25519.
+## CAPTURA 24
 
-Segmentación estricta de tráfico a nivel de base de datos mediante reglas ip-source de firewall.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí las cabeceras HTTP de seguridad.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Mitigación absoluta de ataques de degradación de cifrado (Downgrade Attacks) mediante la exclusión de TLSv1.1 e inyección HSTS.
+---
 
-Resolución de contingencias locales mediante aislamiento de tráfico en interfaces puente inalámbricas independientes.
+## 14.3 Verificación TLS
+
+```bash
+openssl s_client -connect 10.204.145.210:443 -tls1_2
+```
+
+Prueba TLS antigua:
+
+```bash
+openssl s_client -connect 10.204.145.210:443 -tls1_1
+```
+
+Resultado esperado:
+
+- TLS 1.2 aceptado
+- TLS 1.1 rechazado
+
+---
+
+## CAPTURA 25
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí TLS 1.2 exitoso.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+## CAPTURA 26
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí el rechazo de TLS 1.1.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+## 14.4 Verificación de Segmentación
+
+Prueba de acceso MariaDB:
+
+```bash
+nc -vz 10.204.145.211 3306
+```
+
+---
+
+## CAPTURA 27
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Insertar aquí la prueba del puerto 3306.  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+# 15. Conclusiones
+
+El laboratorio permitió implementar múltiples mecanismos de seguridad sobre Linux, aplicando hardening de servicios y protección TLS moderna.
+
+Se logró:
+
+- Proteger el acceso SSH
+- Restringir puertos mediante UFW
+- Segmentar acceso a MariaDB
+- Implementar HTTPS seguro
+- Configurar TLS moderno
+- Aplicar hardening del kernel Linux
+
+Las pruebas realizadas demostraron el correcto funcionamiento del entorno seguro desplegado utilizando Ubuntu Server 26.04 y Ubuntu Server 24.04 LTS.
