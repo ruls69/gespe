@@ -59,7 +59,7 @@ El laboratorio se desarrolló utilizando:
 ## CAPTURA 1
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí la ventana principal de VirtualBox mostrando ambas VMs ejecutándose.  
+<img width="401" height="115" alt="Captura de pantalla 2026-05-22 094031" src="https://github.com/user-attachments/assets/9d130eb9-416b-470d-ad9e-10bb78ef30ac" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -88,7 +88,7 @@ El modo Bridge permitió que las máquinas virtuales se integraran directamente 
 ## CAPTURA 2
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí la configuración del Adaptador Bridge en VirtualBox.  
+<img width="561" height="275" alt="image" src="https://github.com/user-attachments/assets/962df189-2cd0-4478-82ca-544d4983d273" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -146,7 +146,7 @@ Se configuró una IP estática para garantizar que el servidor web mantenga una 
 ## CAPTURA 3
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí el archivo Netplan de la VM Web.  
+<img width="437" height="315" alt="image" src="https://github.com/user-attachments/assets/53cad843-1309-4926-9901-ad6fe5180af2" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -154,7 +154,7 @@ Insertar aquí el archivo Netplan de la VM Web.
 ## CAPTURA 4
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí el resultado de `ip addr` en la VM Web.  
+<img width="835" height="263" alt="image" src="https://github.com/user-attachments/assets/3529ae16-d16a-4082-bcee-546108e56815" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -205,7 +205,7 @@ ping 10.204.145.210
 ## CAPTURA 5
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí el archivo Netplan de la VM DB.  
+<img width="806" height="253" alt="03_netplan" src="https://github.com/user-attachments/assets/fe3be0de-57ed-4ba6-baea-9f14e0ebbf66" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -235,7 +235,7 @@ Las claves ED25519 ofrecen mejor seguridad y rendimiento comparadas con RSA trad
 ## CAPTURA 7
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí el resultado del comando `ssh-keygen`.  
+<img width="602" height="121" alt="image" src="https://github.com/user-attachments/assets/1354e529-142b-4be9-91f3-c02de586c58a" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -275,7 +275,7 @@ Se deshabilitó el acceso root remoto y autenticación por contraseña para redu
 ## CAPTURA 8
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí el archivo `sshd_config`.  
+<img width="282" height="118" alt="image" src="https://github.com/user-attachments/assets/f0fd88ba-3b16-4aa3-bfa8-46830f1a0cca" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -283,7 +283,7 @@ Insertar aquí el archivo `sshd_config`.
 ## CAPTURA 9
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí el estado del servicio SSH.  
+<img width="701" height="343" alt="image" src="https://github.com/user-attachments/assets/eac7c1a3-5467-4eac-bcc1-dfca321f232f" />sudo
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -322,7 +322,7 @@ sudo ufw status verbose
 ## CAPTURA 10
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí las reglas UFW del servidor Web.  
+<img width="424" height="210" alt="image" src="https://github.com/user-attachments/assets/8cc49381-1278-40a2-9a34-9298416b284e" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
@@ -351,45 +351,12 @@ sudo ufw allow 2222/tcp
 ## CAPTURA 11
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí las reglas UFW del servidor DB.  
+<img width="424" height="210" alt="image" src="https://github.com/user-attachments/assets/b2c05808-ed92-4b62-923e-fa631478cb34" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
 
-# 7. Hardening del Kernel
-
-Archivo:
-
-```bash
-sudo nano /etc/sysctl.conf
-```
-
-Parámetros agregados:
-
-```conf
-net.ipv4.conf.all.rp_filter=1
-kernel.sysrq=0
-fs.suid_dumpable=0
-net.ipv4.icmp_echo_ignore_broadcasts=1
-```
-
-Aplicación:
-
-```bash
-sudo sysctl -p
-```
-
----
-
-## CAPTURA 12
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí la configuración de sysctl.  
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
----
-
-# 8. Instalación de Nginx
+# 7. Instalación de Nginx
 
 ```bash
 sudo apt update
@@ -406,15 +373,15 @@ sudo systemctl status nginx
 
 ---
 
-## CAPTURA 13
+## CAPTURA 12
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí el estado del servicio Nginx.  
+<img width="948" height="292" alt="image" src="https://github.com/user-attachments/assets/cd2b5677-a045-41e9-9130-ce2383b19821" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
 
-# 9. Creación del Sitio Web
+# 8. Creación del Sitio Web
 
 ```bash
 sudo mkdir -p /var/www/lab51.local
@@ -435,15 +402,15 @@ Contenido:
 
 ---
 
-## CAPTURA 14
+## CAPTURA 13
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí el archivo HTML creado.  
+<img width="513" height="62" alt="image" src="https://github.com/user-attachments/assets/80645ff5-d6c3-44fc-854b-331405b85aa7" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
 
-# 10. Configuración del Virtual Host
+# 9. Configuración del Virtual Host
 
 Archivo:
 
@@ -473,23 +440,23 @@ sudo systemctl restart nginx
 
 ---
 
+## CAPTURA 14
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+<img width="691" height="569" alt="image" src="https://github.com/user-attachments/assets/aba54b1d-b69c-49a8-81b9-86b3dccc723f" />
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
 ## CAPTURA 15
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí el Virtual Host configurado.  
+<img width="544" height="56" alt="image" src="https://github.com/user-attachments/assets/69224434-a3cd-4d20-8f5d-75e2f90d33a3" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
 
-## CAPTURA 16
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí el resultado de `sudo nginx -t`.  
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
----
-
-# 11. Instalación y Hardening MariaDB
+# 10. Instalación y Hardening MariaDB
 
 Instalación:
 
@@ -512,7 +479,7 @@ sudo mysql_secure_installation
 
 ---
 
-## CAPTURA 17
+## CAPTURA 16
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
 Insertar aquí el estado del servicio MariaDB.  
@@ -520,7 +487,7 @@ Insertar aquí el estado del servicio MariaDB.
 
 ---
 
-## CAPTURA 18
+## CAPTURA 17
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
 Insertar aquí `mysql_secure_installation`.  
@@ -528,7 +495,7 @@ Insertar aquí `mysql_secure_installation`.
 
 ---
 
-## 11.1 Configuración bind-address
+## 10.1 Configuración bind-address
 
 Archivo:
 
@@ -550,7 +517,7 @@ sudo systemctl restart mariadb
 
 ---
 
-## CAPTURA 19
+## CAPTURA 18
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
 Insertar aquí la configuración bind-address.  
@@ -558,7 +525,7 @@ Insertar aquí la configuración bind-address.
 
 ---
 
-# 12. Configuración SSL/TLS
+# 11. Configuración SSL/TLS
 
 Creación del directorio:
 
@@ -576,7 +543,7 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:4096 \
 
 ---
 
-## CAPTURA 20
+## CAPTURA 19
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
 Insertar aquí la generación del certificado TLS.  
@@ -584,7 +551,7 @@ Insertar aquí la generación del certificado TLS.
 
 ---
 
-# 13. Configuración HTTPS
+# 12. Configuración HTTPS
 
 Archivo:
 
@@ -622,7 +589,7 @@ sudo systemctl restart nginx
 
 ---
 
-## CAPTURA 21
+## CAPTURA 20
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
 Insertar aquí la configuración HTTPS/TLS.  
@@ -630,7 +597,7 @@ Insertar aquí la configuración HTTPS/TLS.
 
 ---
 
-## CAPTURA 22
+## CAPTURA 21
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
 Insertar aquí el resultado de `nginx -t` con HTTPS.  
@@ -638,9 +605,9 @@ Insertar aquí el resultado de `nginx -t` con HTTPS.
 
 ---
 
-# 14. Pruebas de Seguridad
+# 13. Pruebas de Seguridad
 
-## 14.1 Verificación HTTPS
+## 13.1 Verificación HTTPS
 
 ```bash
 curl -k https://10.204.145.210
@@ -648,7 +615,7 @@ curl -k https://10.204.145.210
 
 ---
 
-## CAPTURA 23
+## CAPTURA 22
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
 Insertar aquí la prueba HTTPS exitosa.  
@@ -656,7 +623,7 @@ Insertar aquí la prueba HTTPS exitosa.
 
 ---
 
-## 14.2 Verificación de Cabeceras
+## 13.2 Verificación de Cabeceras
 
 ```bash
 curl -k -I https://10.204.145.210
@@ -670,7 +637,7 @@ Cabeceras verificadas:
 
 ---
 
-## CAPTURA 24
+## CAPTURA 23
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
 Insertar aquí las cabeceras HTTP de seguridad.  
@@ -678,7 +645,7 @@ Insertar aquí las cabeceras HTTP de seguridad.
 
 ---
 
-## 14.3 Verificación TLS
+## 13.3 Verificación TLS
 
 ```bash
 openssl s_client -connect 10.204.145.210:443 -tls1_2
@@ -697,7 +664,7 @@ Resultado esperado:
 
 ---
 
-## CAPTURA 25
+## CAPTURA 24
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
 Insertar aquí TLS 1.2 exitoso.  
@@ -705,7 +672,7 @@ Insertar aquí TLS 1.2 exitoso.
 
 ---
 
-## CAPTURA 26
+## CAPTURA 25
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
 Insertar aquí el rechazo de TLS 1.1.  
@@ -713,7 +680,7 @@ Insertar aquí el rechazo de TLS 1.1.
 
 ---
 
-## 14.4 Verificación de Segmentación
+## 13.4 Verificación de Segmentación
 
 Prueba de acceso MariaDB:
 
@@ -723,7 +690,7 @@ nc -vz 10.204.145.211 3306
 
 ---
 
-## CAPTURA 27
+## CAPTURA 26
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
 Insertar aquí la prueba del puerto 3306.  
@@ -731,7 +698,7 @@ Insertar aquí la prueba del puerto 3306.
 
 ---
 
-# 15. Conclusiones
+# 14. Conclusiones
 
 El laboratorio permitió implementar múltiples mecanismos de seguridad sobre Linux, aplicando hardening de servicios y protección TLS moderna.
 
