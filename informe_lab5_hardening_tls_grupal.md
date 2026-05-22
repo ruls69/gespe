@@ -213,7 +213,7 @@ ping 10.204.145.210
 ## CAPTURA 6
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
-Insertar aquí el resultado de `ip addr` en la VM DB.  
+<img width="966" height="385" alt="04_ip_a" src="https://github.com/user-attachments/assets/2ecb3e85-f37b-427a-957f-a71cd91b9910" />
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ---
