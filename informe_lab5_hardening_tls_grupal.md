@@ -5,6 +5,7 @@
 **Universidad:** Universidad Mayor, Real y Pontificia de San Francisco Xavier de Chuquisaca  
 **Facultad:** Facultad de Ciencias y Tecnología  
 **Carrera:** Ingeniería en Ciencias de la Computación-TIS, Ingenieria en Sistemas 
+
 **Asignatura:** SIS313 - Infraestructura, Plataformas Tecnológicas y Redes  
 **Docente:** Ing. Marcelo Quispe Ortega  
 **Laboratorio:** 5.1 - Hardening Integral y Seguridad TLS  
